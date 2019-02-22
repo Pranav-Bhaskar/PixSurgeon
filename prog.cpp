@@ -9,7 +9,7 @@ int main(int argc, char* argv[]){
 	init();
 	glutDisplayFunc(display);
 	glutMouseFunc(mouseClick);
-	//glutPassiveMotionFunc(passivePointer);
+	glutPassiveMotionFunc(passivePointer);
 	glutKeyboardFunc(keyboard);
 	glutMainLoop();
 	return 0;

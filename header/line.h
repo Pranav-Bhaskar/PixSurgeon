@@ -24,9 +24,8 @@ void Line::draw(){
 }
 
 void Line::left_click(int x, int y){
-	std::cout<<" x:"<<x<<" y:"<<y<<std::endl;
 	this->cord_x[this->state] = x;
-	this->cord_y[this->state++] = 703 - y;
+	this->cord_y[this->state++] = y;
 	if(this->state == 2){
 		buffer.push_back(this);
 		cMode = new Line;
