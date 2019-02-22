@@ -6,7 +6,9 @@ class Line: public Mode{
 	//void right_click();
 	public:
 	void left_click(int, int);
+	std::string modeData();
 	void draw();
+	void quit();
 	Line();
 };
 
@@ -15,8 +17,16 @@ Line::Line(){
 	this->state = 0;
 }
 
+std::string Line::modeData(){
+	if(this->state == 0)
+		return std::string("Click for P1");
+	std::string s("P1(");
+	s += std::to_string(this->cord_x[0]) + ":" + std::to_string(cord_y[0]) + "). ";
+	return  s + "Click for P2";
+}
+
 void Line::draw(){
-	glColor3f(0.0, 1.0, 0.0);
+	this->objectColour.setColour();
 	glBegin(GL_LINES);
 		glVertex2f(cord_x[0], cord_y[0]);
 		glVertex2f(cord_x[1], cord_y[1]);
@@ -27,8 +37,15 @@ void Line::left_click(int x, int y){
 	this->cord_x[this->state] = x;
 	this->cord_y[this->state++] = y;
 	if(this->state == 2){
+		this->objectColour = curCol;
 		buffer.push_back(this);
 		cMode = new Line;
-		glutPostRedisplay();
 	}
+	glutPostRedisplay();
+}
+
+void Line::quit(){
+	this->state = 0;
+	errorBuffer = "Mode Reseting Success";
+	glutPostRedisplay();
 }
