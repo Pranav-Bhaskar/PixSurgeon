@@ -8,6 +8,7 @@ class Mode{
 	public:
 	unsigned int get_mode();
 	virtual void left_click(int, int)=0;	//The left click should also serve a purpose
+	virtual void draw()=0;
 };
 
 void Mode::set_mode(unsigned int update){

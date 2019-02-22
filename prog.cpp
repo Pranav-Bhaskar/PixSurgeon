@@ -3,12 +3,13 @@
 int main(int argc, char* argv[]){
 	cMode = new Line;
 	glutInit(&argc, argv);
-	glutInitWindowSize(1366, 768);
+	glutInitWindowSize(1365, 703);
 	glutInitWindowPosition(0, 0);
 	glutCreateWindow("Pix Surgeon");
-	glutMouseFunc(mouseClick);
+	init();
 	glutDisplayFunc(display);
-	glutPassiveMotionFunc(passivePointer);
+	glutMouseFunc(mouseClick);
+	//glutPassiveMotionFunc(passivePointer);
 	glutKeyboardFunc(keyboard);
 	glutMainLoop();
 	return 0;
