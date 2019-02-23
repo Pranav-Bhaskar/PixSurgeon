@@ -75,7 +75,7 @@ void Panel::leftClick(int x ,int y){
 				return;
 			case 1 : cMode = new Line;
 				return;
-			case 2 : //cMode = new PolyLine;
+			case 2 : cMode = new PolyLine;
 				return;
 			case 3 : cMode = new PolyNom;
 				return;

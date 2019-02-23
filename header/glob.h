@@ -95,6 +95,7 @@ void keyboard(unsigned char key, int x, int y){
 			buffer.pop_back();
 			errorBuffer = "Undo Successful";
 		}
+		break;
 	case 'Q':cMode->quit();
 		break;
 	case '`':consoleMode = !consoleMode;
