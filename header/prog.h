@@ -26,7 +26,8 @@ void passivePointer(int, int);
 
 #include "./none.h"
 #include "./line.h"
-//#include "./poly.h"
+#include "./poly.h"
+//#include "./polyLine.h"
 #include "panel.h"
 Panel panel;
 #include "./glob.h"

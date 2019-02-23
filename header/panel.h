@@ -59,8 +59,8 @@ void Panel::showOptions(){
 		}
 	}
 }
-//340
-void Panel::showPalet(){ //1240
+
+void Panel::showPalet(){
 	
 }
 
@@ -77,7 +77,7 @@ void Panel::leftClick(int x ,int y){
 				return;
 			case 2 : //cMode = new PolyLine;
 				return;
-			case 3 : //cMode = new PolyNom;
+			case 3 : cMode = new PolyNom;
 				return;
 			}
 		}
