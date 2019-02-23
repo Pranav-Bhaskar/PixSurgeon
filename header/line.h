@@ -3,9 +3,8 @@ class Line: public Mode{
 	unsigned int cord_x[2];
 	unsigned int cord_y[2];
 	unsigned int state;
-	//void right_click();
 	public:
-	void left_click(int, int);
+	void leftClick(int, int);
 	std::string modeData();
 	void draw();
 	void quit();
@@ -13,7 +12,7 @@ class Line: public Mode{
 };
 
 Line::Line(){
-	set_mode(1);
+	setMode(1);
 	this->state = 0;
 }
 
@@ -33,7 +32,7 @@ void Line::draw(){
 	glEnd();
 }
 
-void Line::left_click(int x, int y){
+void Line::leftClick(int x, int y){
 	this->cord_x[this->state] = x;
 	this->cord_y[this->state++] = y;
 	if(this->state == 2){

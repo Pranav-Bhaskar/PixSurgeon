@@ -21,6 +21,7 @@ void display(){
 	glClear(GL_COLOR_BUFFER_BIT);
 	for(int i=0;i<buffer.size();++i)
 		buffer[i]->draw();
+	panel.draw();
 	displayEventBar();
 	glutSwapBuffers();
 }
@@ -45,7 +46,7 @@ void changeColour(std::vector<std::string>& args){
 }
 
 void processCommand(){
-	console.erase(0, 3);
+	console.erase(0, 4);
 	std::vector<std::string> args = cutter(console, ' ');
 	if(args.size() < 1)
 		return;
@@ -63,9 +64,10 @@ void keyboard(unsigned char key, int x, int y){
 		key -= 32;
 	if(key == 13){
 		if(consoleMode){
+			console.pop_back();
 			processCommand();
 			glutPostRedisplay();
-			console = ">>> ";
+			console = ">>>  #";
 			return;
 		}
 		errorBuffer = "Error : '";
@@ -74,20 +76,30 @@ void keyboard(unsigned char key, int x, int y){
 		glutPostRedisplay();
 		return;
 	}
-	if((consoleMode) && (key != '~')){
-		console.push_back(key);
+	if((consoleMode) && (key != '`')){
+		console.pop_back();
+		if(key == 8 && console.length() > 5)
+			console.pop_back();
+		else
+		if((key >= '0' && key <= '9') || ((key >= 'A') && (key <= 'Z')) || key == 32)
+			console.push_back(key);
 		glutPostRedisplay();
+		console.push_back('#');
 		return;
 	}
 	switch(key){
 	case 27 :std::cout<<"\nExitting...\n";
 		exit(0);
 		break;
+	case 26 :if(buffer.size() != 0){
+			buffer.pop_back();
+			errorBuffer = "Undo Successful";
+		}
 	case 'Q':cMode->quit();
 		break;
-	case '~':consoleMode = !consoleMode;
+	case '`':consoleMode = !consoleMode;
 		if(consoleMode)
-			console = ">>> ";
+			console = ">>>  #";
 		else
 			console.clear();
 		break;
@@ -107,30 +119,30 @@ void mouseClick(int button, int state, int x, int y){
 		glutPostRedisplay();
 		return ;
 	}
-	if(button == GLUT_LEFT_BUTTON)
-		cMode->left_click(x, 690 - y);
+	if(button == GLUT_RIGHT_BUTTON){
+		if(x <= 1200)
+			cMode->rightClick(x, 690 - y);
+	}
+	if(button == GLUT_LEFT_BUTTON){
+		if(x > 1200)
+			panel.leftClick(x, 690 - y);
+		else
+			cMode->leftClick(x, 690 - y);
+	}
+	glutPostRedisplay();
 }
 
 
 void passivePointer(int x, int y){
+	if(x > 1200)
+		return ;
 	pointer.clear();
 	pointer = "X:" + std::to_string(x) + " Y: " + std::to_string(690 - y) + " ";
 	glutPostRedisplay();
 }
 
 void updateCurrentMode(){
-	mode = "Mode: ";
-	switch(cMode->get_mode()){
-	case 0 :mode += "SELECT ";
-		break;
-	case 1 :mode += "LINE ";
-		break;
-	case 2 :mode += "POLYLINE ";
-		break;
-	case 3 :mode += "POLYNOMIAL ";
-		break;
-	}
-	mode += cMode->modeData();
+	mode = "Mode: " + modes[cMode->getMode()] + "  < " + cMode->modeData() + " >";
 }
 
 void displayEventBar(){		//228 -> length of the console.

@@ -1,18 +1,23 @@
-//The poly class is used to draw a polygon.
-class Poly: public Mode{
+//The PolyNom class is used to draw a Polygon.
+class PolyNom: public Mode{
 	unsigned int sides;
+	
 	int *cord_x;
 	int *cord_y;
 	public:
-	void left_click(int, int);
-	void right_click(int, int);
-	Poly();
+	void leftClick(int, int);
+	void rightClick(int, int);
+	PolyNom();
 };
 
-Poly::Poly(){
+PolyNom::PolyNom(){
 	set_mode(2);
 }
 
-void Poly::left_click(int, int){
+void PolyNom::rightCick(int, int){
+	
+}
+
+void PolyNom::left_click(int, int){
 	
 }

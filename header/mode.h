@@ -2,22 +2,25 @@
 //To be inherited publically.
 class Mode{
 	protected:
-	void set_mode(unsigned int);
+	void setMode(unsigned int);
 	unsigned int mode;
 	ColourHandler objectColour;
 	//virtual void right_click()=0;	//The right click should show a menu
 	public:
-	unsigned int get_mode();
-	virtual void left_click(int, int)=0;	//The left click should also serve a purpose
+	unsigned int getMode();
+	virtual void leftClick(int, int)=0;	//The left click should also serve a purpose
+	virtual void rightClick(int, int);
 	virtual void draw()=0;
 	virtual std::string modeData()=0;
 	virtual void quit()=0;
 };
 
-void Mode::set_mode(unsigned int update){
+void Mode::setMode(unsigned int update){
 	this->mode = update;
 }
 
-unsigned int Mode::get_mode(){
-	return mode;
+void Mode::rightClick(int, int){}
+
+unsigned int Mode::getMode(){
+	return this->mode;
 }

@@ -1,7 +1,7 @@
 #include "./header/prog.h"
 
 int main(int argc, char* argv[]){
-	cMode = new Line;
+	cMode = new None;
 	glutInit(&argc, argv);
 	glutInitWindowSize(1365, 700);
 	glutInitWindowPosition(0, 0);
