@@ -34,7 +34,7 @@ void drawString(void *font, float x, float y, std::string str){
 
 void changeColour(std::vector<std::string>& args){
 	if(args.size() != 4){
-		errorBuffer = "UsageError: COL <Red> <Green> <Blue> <Alpha>";
+		errorBuffer = "UsageError: COL <R> <G> <B> <Alpha>";
 		return;
 	}
 	try{
@@ -167,9 +167,9 @@ void displayEventBar(){		//228 -> length of the console.
 	while(bar.length() < 180)
 		bar.push_back('_');
 	bar += mode;
-	if(bar.length() > 227)
+	if(bar.length() > 225)
 		bar = "ERROR : Size of Event bar is smaller than your wishlist ;)";
-	drawString(GLUT_BITMAP_HELVETICA_10, 0.0, -9.0, bar);
+	drawString(GLUT_BITMAP_HELVETICA_10, 2.0, -9.0, bar);
 	if(errorBuffer.length() > 0)
 		std::cout<<errorBuffer<<std::endl;
 	errorBuffer.clear();

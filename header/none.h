@@ -14,7 +14,7 @@ None::None(){
 }
 
 std::string None::modeData(){
-	return std::string("This Mode does NOTHING");	
+	return std::string("NOTHING");	
 }
 
 void None::draw(){}

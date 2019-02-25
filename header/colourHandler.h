@@ -40,7 +40,7 @@ void ColourHandler::setColour(){
 	glColor4d(this->red, this->green, this->blue, this->alpha);
 }
 
-void ColourHandler::getColour(double a, double b, double c, double d){
+void ColourHandler::getColour(double a, double b, double c, double d = 0.0000){
 	this->red = a;
 	this->green = b;
 	this->blue = c;

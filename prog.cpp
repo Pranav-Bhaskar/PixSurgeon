@@ -6,6 +6,7 @@ int main(int argc, char* argv[]){
 	glutInitWindowSize(1365, 700);
 	glutInitWindowPosition(0, 0);
 	glutCreateWindow("Pix Surgeon");
+	glutSetCursor(GLUT_CURSOR_CROSSHAIR);
 	init();
 	glutDisplayFunc(display);
 	glutMouseFunc(mouseClick);
