@@ -3,7 +3,7 @@
 int main(int argc, char* argv[]){
 	cMode = new None;
 	glutInit(&argc, argv);
-	glutInitWindowSize(1365, 700);
+	glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 	glutInitWindowPosition(0, 0);
 	glutCreateWindow("Pix Surgeon");
 	glutSetCursor(GLUT_CURSOR_CROSSHAIR);

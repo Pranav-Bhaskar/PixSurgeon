@@ -138,6 +138,9 @@ void Panel::leftClick(int x ,int y){
 			case 4 :delete cMode;
 				cMode = new Pencil;
 				return;
+			case 5 :delete cMode;
+				cMode = new Eraser;
+				return;
 			}
 		}
 	}

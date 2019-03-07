@@ -118,11 +118,12 @@ void keyboard(unsigned char key, int x, int y){
 void mouseClick(int button, int state, int x, int y){
 	if((GLUT_DOWN == state) && (button == GLUT_LEFT_BUTTON)){
 		keyDownStat = true;
+		glutPostRedisplay();
 		return ;
 	}
 	if(GLUT_UP == state)
 		keyDownStat = false;
-	if((690 - y <= 0) || (y < 1) || (x < 1) || (y > 690) || (x > 1365)){
+	if((690 - y < 0) || (y < 1) || (x < 1) || (y > 690) || (x > 1365)){
 		errorBuffer = "ERROR : Click out of bound";
 		glutPostRedisplay();
 		return ;
@@ -146,7 +147,7 @@ void passivePointer(int x, int y){
 	pointerX = x;
 	pointerY = 690 - y;
 	pointer.clear();
-	pointer = "X:" + std::to_string(x) + " Y: " + std::to_string(690 - y) + " ";
+	pointer = "X:" + std::to_string((int)x) + " Y: " + std::to_string((int)690 - y) + " ";
 	glutPostRedisplay();
 }
 
@@ -156,7 +157,7 @@ void activePointer(int x, int y){
 	pointerX = x;
 	pointerY = 690 - y;
 	pointer.clear();
-	pointer = "X:" + std::to_string(x) + " Y: " + std::to_string(690 - y) + " ";
+	pointer = "X:" + std::to_string((int)x) + " Y: " + std::to_string((int)690 - y) + " ";
 	glutPostRedisplay();
 }
 
@@ -168,8 +169,8 @@ void displayEventBar(){		//228 -> length of the console.
 	glColor3f(0.0, 0.0, 0.0);
 	glBegin(GL_POLYGON);
 		glVertex2f(0, -10);
-		glVertex2f(1365, -10);
-		glVertex2f(1365, 0);
+		glVertex2f(WINDOW_WIDTH, -10);
+		glVertex2f(WINDOW_WIDTH, 0);
 		glVertex2f(0, 0);
 	glEnd();
 	glColor3f(1.0, 1.0, 1.0);
@@ -198,5 +199,5 @@ void init(){
 	glClearColor(1.0, 1.0, 1.0, 0.0);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluOrtho2D(0.0, 1365.0, -10.0, 690.0);
+	gluOrtho2D(0.0, WINDOW_WIDTH, -10.0, (WINDOW_HEIGHT - 10));
 }
