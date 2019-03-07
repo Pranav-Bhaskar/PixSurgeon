@@ -68,5 +68,4 @@ void Line::leftClick(int x, int y){
 void Line::quit(){
 	this->state = 0;
 	errorBuffer = "Mode Reseting Success";
-	glutPostRedisplay();
 }

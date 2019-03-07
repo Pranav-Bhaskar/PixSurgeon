@@ -11,8 +11,8 @@ class Mode{
 	virtual void leftClick(int, int);
 	virtual void rightClick(int, int);
 	virtual void draw()=0;
-	virtual std::string modeData()=0;
-	virtual void quit()=0;
+	virtual std::string modeData();
+	virtual void quit();
 	virtual void ghostPointer();	//The dotted line which follows your
 	virtual void undeadPoints();	//The Points which were clicked at some time in the history
 };
@@ -20,6 +20,10 @@ class Mode{
 void Mode::setMode(unsigned int update){
 	this->mode = update;
 }
+
+void Mode::quit(){}
+
+std::string Mode::modeData(){return std::string("");}
 
 void Mode::leftClick(int, int){}
 

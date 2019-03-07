@@ -8,7 +8,7 @@
 #include "colourHandler.h"
 ColourHandler curCol;
 void drawString(void*, float, float, std::string);
-std::vector<std::string> modes = {"NONE", "LINE", "POLYLINE", "POLYNOMIAL", "PENCIL", "ERASER"};
+std::vector<std::string> modes = {"NONE", "LINE", "POLYLINE", "POLYNOMIAL", "PENCIL", "ERASER", "RENDER"};
 std::string console, pointer("Welcome To Pix Surgeon"), mode, errorBuffer;
 #include "./mode.h"
 Mode* cMode;
@@ -36,6 +36,7 @@ void activePointer(int, int);
 #include "./eraser.h"
 #include "./poly.h"
 #include "./polyLine.h"
+#include "./render.h"
 #include "panel.h"
 Panel panel;
 #include "./glob.h"

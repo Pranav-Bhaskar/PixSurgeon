@@ -141,6 +141,18 @@ void Panel::leftClick(int x ,int y){
 			case 5 :delete cMode;
 				cMode = new Eraser;
 				return;
+			case 6 :if(cMode->getMode() != 0){
+					errorBuffer = "Shift to NONE Mode then RENDER  ";
+					return;
+				}
+				delete cMode;
+				cMode = new Render;
+				for(int kill=0;kill<buffer.size();++kill)
+					delete buffer[kill];
+				buffer.clear();
+				buffer.push_back(cMode);
+				cMode = new None;
+				return;
 			}
 		}
 	}

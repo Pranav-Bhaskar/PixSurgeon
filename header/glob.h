@@ -17,7 +17,6 @@ std::vector<std::string> cutter(std::string& str, char delimer){
 }
 
 void display(){
-	glMatrixMode(GL_MODELVIEW);
 	glClear(GL_COLOR_BUFFER_BIT);
 	for(int i=0;i<buffer.size();++i)
 		buffer[i]->draw();
@@ -197,6 +196,8 @@ void displayEventBar(){		//228 -> length of the console.
 void init(){
 	consoleMode = false;
 	glClearColor(1.0, 1.0, 1.0, 0.0);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluOrtho2D(0.0, WINDOW_WIDTH, -10.0, (WINDOW_HEIGHT - 10));

@@ -41,7 +41,6 @@ void Pencil::quit(){
 	cord_x.clear();
 	cord_y.clear();
 	errorBuffer = "Mode Reseting Success";
-	glutPostRedisplay();
 }
 
 Pencil::~Pencil(){

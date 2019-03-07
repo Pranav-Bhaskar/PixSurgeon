@@ -30,7 +30,6 @@ void PolyNom::quit(){
 	this->cord_x.clear();
 	this->cord_y.clear();
 	errorBuffer = "Mode Reseting Success";
-	glutPostRedisplay();
 }
 
 void PolyNom::undeadPoints(){
