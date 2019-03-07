@@ -12,6 +12,8 @@ std::string console, pointer("Welcome To Pix Surgeon"), mode, errorBuffer;
 Mode* cMode;
 std::vector<Mode*> buffer;
 bool consoleMode;
+int pointerX;
+int pointerY;
 
 void init();
 void changeColour(std::vector<std::string>&);

@@ -38,7 +38,7 @@ bool Panel::isInTriangle(int x, int y){
 }
 
 void Panel::setBackground(){
-	this->backGround->setColour();
+	this->backGround->setEnv();
 	glBegin(GL_POLYGON);
 		glVertex2f(1200, 0);
 		glVertex2f(1200, 690);
@@ -48,6 +48,7 @@ void Panel::setBackground(){
 }
 
 void Panel::draw(){
+	this->backGround->setEnv();
 	glBegin(GL_LINES);
 		glVertex2f(1200, 0);
 		glVertex2f(1200, 690);
@@ -58,22 +59,22 @@ void Panel::draw(){
 }
 
 void Panel::showOptions(){
-	this->foreGround->setColour();
+	this->foreGround->setEnv();
 	drawString(GLUT_BITMAP_HELVETICA_10, 1260, 645, std::string("MODES"));
 	for(int i=0;i<modes.size();++i){
-		this->foreGround->setColour();
+		this->foreGround->setEnv();
 		glBegin(GL_POLYGON);
 			glVertex2f(1220, 620 - (i * 21));
 			glVertex2f(1220, 634 - (i * 21));
 			glVertex2f(1350, 634 - (i * 21));
 			glVertex2f(1350, 620 - (i * 21));
 		glEnd();
-		this->textCol->setColour();
+		this->textCol->setEnv();
 		float sp_x = 1285 - (modes[i].length()*3);
 		float sp_y = 620 - (i * 21) + 4;
 		drawString(GLUT_BITMAP_HELVETICA_10, sp_x, sp_y, modes[i]);
 		if(i == cMode->getMode()){
-			this->foreGround->setColour();
+			this->foreGround->setEnv();
 			drawString(GLUT_BITMAP_HELVETICA_10, 1212, sp_y, std::string(">"));
 			drawString(GLUT_BITMAP_HELVETICA_10, 1354, sp_y, std::string("<"));
 		}
@@ -84,7 +85,7 @@ void Panel::showPalet(){
 	std::vector<int> xcord = {1220, 1285, 1350};
 	std::vector<int> ycord = {200, 313, 200};
 	ScanLine(xcord, ycord, true, this->darkFactor);
-	foreGround->setColour();
+	foreGround->setEnv();
 	glBegin(GL_POLYGON);
 		glVertex2f(1220, 170);
 		glVertex2f(1220, 190);
@@ -103,10 +104,10 @@ void Panel::showPalet(){
 		glVertex2f(1350, 160);
 		glVertex2f(1350, 140);
 	glEnd();
-	textCol->setColour();
+	textCol->setEnv();
 	drawString(GLUT_BITMAP_HELVETICA_10, 1227, 175, std::string("BRIGHT"));
 	drawString(GLUT_BITMAP_HELVETICA_10, 1301, 175, std::string("DARKEN"));
-	curCol.setColour();
+	curCol.setEnv();
 	glBegin(GL_POLYGON);
 		glVertex2f(1221, 141);
 		glVertex2f(1221, 159);

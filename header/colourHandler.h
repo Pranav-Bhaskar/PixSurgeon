@@ -1,11 +1,12 @@
 class ColourHandler{
 	private:
+	float size;
 	double red;
 	double green;
 	double blue;
 	double alpha;
 	public:
-	void setColour();
+	void setEnv();
 	void swap(ColourHandler&);
 	void getColour(double, double, double, double);
 	ColourHandler();
@@ -19,6 +20,7 @@ ColourHandler::ColourHandler(double a, double b, double c, double d){
 	this->green = b;
 	this->blue = c;
 	this->alpha = d;
+	this->size = 1.0;
 }
 
 void ColourHandler::swap(ColourHandler& col){
@@ -34,10 +36,15 @@ void ColourHandler::swap(ColourHandler& col){
 	temp = this->blue;
 	this->blue = col.blue;
 	col.blue = temp;
+	
+	temp = this->size;
+	this->size = col.size;
+	col.size = temp;
 }
 
-void ColourHandler::setColour(){
+void ColourHandler::setEnv(){
 	glColor4d(this->red, this->green, this->blue, this->alpha);
+	glPointSize(this->size);
 }
 
 void ColourHandler::getColour(double a, double b, double c, double d = 0.0000){
@@ -48,7 +55,7 @@ void ColourHandler::getColour(double a, double b, double c, double d = 0.0000){
 }
 
 ColourHandler::ColourHandler(){
-	this->red = this->green = this->blue = this->alpha = 0.0;
+	this->size = this->red = this->green = this->blue = this->alpha = 0.0;
 }
 
 ColourHandler::ColourHandler(ColourHandler& col){
@@ -63,4 +70,5 @@ void ColourHandler::operator =(ColourHandler& col){
 	this->green = col.green;
 	this->blue = col.blue;
 	this->alpha = col.alpha;
+	this->size = col.size;
 }

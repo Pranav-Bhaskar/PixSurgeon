@@ -8,6 +8,8 @@ class PolyNom: public Mode{
 	public:
 	void leftClick(int, int);
 	void rightClick(int, int);
+	void undeadPoints();
+	void ghostPointer();
 	std::string modeData();
 	void draw();
 	void quit();
@@ -28,12 +30,34 @@ void PolyNom::quit(){
 	glutPostRedisplay();
 }
 
+void PolyNom::undeadPoints(){
+	if(this->vert < 1)
+		return;
+	curCol.setEnv();
+	glPointSize(5.0);
+	glBegin(GL_POINTS);
+		for(int i=0;i<this->vert;++i)
+			glVertex2f(this->cord_x[i], this->cord_y[i]);
+	glEnd();
+}
+
+void PolyNom::ghostPointer(){
+	if(this->vert < 1)
+		return;
+	curCol.setEnv();
+	glBegin(GL_LINE_LOOP);
+		for(int i=0;i<this->vert;++i)
+			glVertex2f(this->cord_x[i], this->cord_y[i]);
+		glVertex2f(pointerX, pointerY);
+	glEnd();
+}
+
 std::string PolyNom::modeData(){
 	return std::string("Right click to stop");
 }
 
 void PolyNom::draw(){
-	this->objectColour.setColour();
+	this->objectColour.setEnv();
 	glBegin(GL_LINE_LOOP);
 	for(int i=0;i<this->vert;++i)
 		glVertex2f(cord_x[i], cord_y[i]);
@@ -41,6 +65,7 @@ void PolyNom::draw(){
 }
 
 void PolyNom::rightClick(int x, int y){
+	this->leftClick(pointerX, pointerY);
 	this->objectColour = curCol;
 	buffer.push_back(this);
 	cMode = new PolyNom;

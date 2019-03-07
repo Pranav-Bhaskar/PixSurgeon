@@ -5,6 +5,8 @@ class Line: public Mode{
 	unsigned int state;
 	public:
 	void leftClick(int, int);
+	void undeadPoints();
+	void ghostPointer();
 	std::string modeData();
 	void draw();
 	void quit();
@@ -16,6 +18,26 @@ Line::Line(){
 	this->state = 0;
 }
 
+void Line::undeadPoints(){
+	if(this->state != 1)
+		return;
+	curCol.setEnv();
+	glPointSize(5.0);
+	glBegin(GL_POINTS);
+		glVertex2f(this->cord_x[0], this->cord_y[0]);
+	glEnd();
+}
+
+void Line::ghostPointer(){
+	if(this->state != 1)
+		return;
+	curCol.setEnv();
+	glBegin(GL_LINES);
+		glVertex2f(this->cord_x[0], this->cord_y[0]);
+		glVertex2f(pointerX, pointerY);
+	glEnd();
+}
+
 std::string Line::modeData(){
 	if(this->state == 0)
 		return std::string("Click for P1");
@@ -25,7 +47,7 @@ std::string Line::modeData(){
 }
 
 void Line::draw(){
-	this->objectColour.setColour();
+	this->objectColour.setEnv();
 	glBegin(GL_LINES);
 		glVertex2f(cord_x[0], cord_y[0]);
 		glVertex2f(cord_x[1], cord_y[1]);

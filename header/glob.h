@@ -21,6 +21,8 @@ void display(){
 	glClear(GL_COLOR_BUFFER_BIT);
 	for(int i=0;i<buffer.size();++i)
 		buffer[i]->draw();
+	cMode->ghostPointer();
+	cMode->undeadPoints();
 	panel.draw();
 	displayEventBar();
 	glutSwapBuffers();
@@ -133,10 +135,11 @@ void mouseClick(int button, int state, int x, int y){
 	glutPostRedisplay();
 }
 
-
 void passivePointer(int x, int y){
-	if(x > 1200)
+	if(x > 1200 || y > 690)
 		return ;
+	pointerX = x;
+	pointerY = 690 - y;
 	pointer.clear();
 	pointer = "X:" + std::to_string(x) + " Y: " + std::to_string(690 - y) + " ";
 	glutPostRedisplay();

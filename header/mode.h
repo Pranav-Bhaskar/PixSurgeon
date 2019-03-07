@@ -8,16 +8,22 @@ class Mode{
 	//virtual void right_click()=0;	//The right click should show a menu
 	public:
 	unsigned int getMode();
-	virtual void leftClick(int, int)=0;	//The left click should also serve a purpose
+	virtual void leftClick(int, int)=0;
 	virtual void rightClick(int, int);
 	virtual void draw()=0;
 	virtual std::string modeData()=0;
 	virtual void quit()=0;
+	virtual void ghostPointer();	//The dotted line which follows your
+	virtual void undeadPoints();	//The Points which were clicked at some time in the history
 };
 
 void Mode::setMode(unsigned int update){
 	this->mode = update;
 }
+
+void Mode::ghostPointer(){}
+
+void Mode::undeadPoints(){}
 
 void Mode::rightClick(int, int){}
 
