@@ -1,10 +1,8 @@
 //The PolyNom class is used to draw a Polygon.
 class PolyNom: public Mode{
 	unsigned int vert;
-	unsigned int maxSize;
-	int *cord_x;
-	int *cord_y;
-	void resize();
+	std::vector<int> cord_x;
+	std::vector<int> cord_y;
 	public:
 	void leftClick(int, int);
 	void rightClick(int, int);
@@ -14,18 +12,23 @@ class PolyNom: public Mode{
 	void draw();
 	void quit();
 	PolyNom();
+	~PolyNom();
 };
 
 PolyNom::PolyNom(){
 	setMode(3);
 	this->vert = 0;
-	this->maxSize = 5;
-	this->cord_x = new int[maxSize];
-	this->cord_y = new int[maxSize];
+}
+
+PolyNom::~PolyNom(){
+	std::vector<int>().swap(cord_x);
+	std::vector<int>().swap(cord_y);
 }
 
 void PolyNom::quit(){
 	this->vert = 0;
+	this->cord_x.clear();
+	this->cord_y.clear();
 	errorBuffer = "Mode Reseting Success";
 	glutPostRedisplay();
 }
@@ -65,29 +68,14 @@ void PolyNom::draw(){
 }
 
 void PolyNom::rightClick(int x, int y){
-	this->leftClick(pointerX, pointerY);
+	this->leftClick(x, y);
 	this->objectColour = curCol;
 	buffer.push_back(this);
 	cMode = new PolyNom;
 }
 
-void PolyNom::resize(){
-	maxSize *= 2;
-	int* lis = new int[maxSize];
-	for(int i=0;i<this->vert;++i)
-		lis[i] = cord_x[i];
-	delete cord_x;
-	cord_x = lis;
-	lis = new int[maxSize];
-	for(int i=0;i<this->vert;++i)
-		lis[i] = cord_y[i];
-	delete cord_y;
-	cord_y = lis;
-}
-
 void PolyNom::leftClick(int x, int y){
-	if(this->vert == this->maxSize)
-		this->resize();
-	this->cord_x[this->vert] = x;
-	this->cord_y[this->vert++] = y;
+	this->cord_x.push_back(x);
+	this->cord_y.push_back(y);
+	++this->vert;
 }

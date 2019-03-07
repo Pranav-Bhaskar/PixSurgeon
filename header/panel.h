@@ -123,13 +123,20 @@ void Panel::leftClick(int x ,int y){
 	for(int i=0;i<modes.size();++i){
 		if(y > (620 - (i * 21)) && (y < (634 - (i * 21)))){
 			switch(i){
-			case 0 : cMode = new None;
+			case 0 :delete cMode;
+				cMode = new None;
 				return;
-			case 1 : cMode = new Line;
+			case 1 :delete cMode;
+				cMode = new Line;
 				return;
-			case 2 : cMode = new PolyLine;
+			case 2 :delete cMode;
+				cMode = new PolyLine;
 				return;
-			case 3 : cMode = new PolyNom;
+			case 3 :delete cMode;
+				cMode = new PolyNom;
+				return;
+			case 4 :delete cMode;
+				cMode = new Pencil;
 				return;
 			}
 		}

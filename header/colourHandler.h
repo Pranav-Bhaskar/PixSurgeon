@@ -63,6 +63,7 @@ ColourHandler::ColourHandler(ColourHandler& col){
 	this->green = col.green;
 	this->blue = col.blue;
 	this->alpha = col.alpha;
+	this->size = col.size;
 }
 
 void ColourHandler::operator =(ColourHandler& col){

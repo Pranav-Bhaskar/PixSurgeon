@@ -1,8 +1,6 @@
 //The None class is used to do nothing.
 class None: public Mode{
-	//void right_click();
 	public:
-	void leftClick(int, int);
 	std::string modeData();
 	void draw();
 	void quit();
@@ -18,7 +16,5 @@ std::string None::modeData(){
 }
 
 void None::draw(){}
-
-void None::leftClick(int x, int y){}
 
 void None::quit(){}

@@ -10,6 +10,7 @@ int main(int argc, char* argv[]){
 	init();
 	glutDisplayFunc(display);
 	glutMouseFunc(mouseClick);
+	glutMotionFunc(activePointer);
 	glutPassiveMotionFunc(passivePointer);
 	glutKeyboardFunc(keyboard);
 	glutMainLoop();

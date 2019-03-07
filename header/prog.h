@@ -6,12 +6,13 @@
 #include "colourHandler.h"
 ColourHandler curCol;
 void drawString(void*, float, float, std::string);
-std::vector<std::string> modes = {"NONE", "LINE", "POLYLINE", "POLYNOMIAL"};
+std::vector<std::string> modes = {"NONE", "LINE", "POLYLINE", "POLYNOMIAL", "PENCIL"};
 std::string console, pointer("Welcome To Pix Surgeon"), mode, errorBuffer;
 #include "./mode.h"
 Mode* cMode;
 std::vector<Mode*> buffer;
 bool consoleMode;
+bool keyDownStat;
 int pointerX;
 int pointerY;
 
@@ -25,9 +26,11 @@ void processCommand();
 void keyboard(unsigned char, int, int);
 void mouseClick(int, int, int, int);
 void passivePointer(int, int);
+void activePointer(int, int);
 
 #include "./none.h"
 #include "./line.h"
+#include "./pencil.h"
 #include "./poly.h"
 #include "./polyLine.h"
 #include "panel.h"

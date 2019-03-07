@@ -94,6 +94,7 @@ void keyboard(unsigned char key, int x, int y){
 		exit(0);
 		break;
 	case 26 :if(buffer.size() != 0){
+			delete buffer[buffer.size() - 1];
 			buffer.pop_back();
 			errorBuffer = "Undo Successful";
 		}
@@ -115,8 +116,12 @@ void keyboard(unsigned char key, int x, int y){
 }
 
 void mouseClick(int button, int state, int x, int y){
-	if(GLUT_DOWN == state)
-		return;
+	if((GLUT_DOWN == state) && (button == GLUT_LEFT_BUTTON)){
+		keyDownStat = true;
+		return ;
+	}
+	if(GLUT_UP == state)
+		keyDownStat = false;
 	if((690 - y <= 0) || (y < 1) || (x < 1) || (y > 690) || (x > 1365)){
 		errorBuffer = "ERROR : Click out of bound";
 		glutPostRedisplay();
@@ -136,6 +141,16 @@ void mouseClick(int button, int state, int x, int y){
 }
 
 void passivePointer(int x, int y){
+	if(x > 1200 || y > 690)
+		return ;
+	pointerX = x;
+	pointerY = 690 - y;
+	pointer.clear();
+	pointer = "X:" + std::to_string(x) + " Y: " + std::to_string(690 - y) + " ";
+	glutPostRedisplay();
+}
+
+void activePointer(int x, int y){
 	if(x > 1200 || y > 690)
 		return ;
 	pointerX = x;
