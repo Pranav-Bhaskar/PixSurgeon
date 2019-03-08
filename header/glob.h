@@ -55,6 +55,13 @@ void processCommand(){
 		consoleMode = false;
 		return;
 	}
+	if(loadMe){
+		Loader l(console);
+		loadMe = false;
+		console.clear();
+		consoleMode = false;
+		return;
+	}
 	std::vector<std::string> args = cutter(console, ' ');
 	if(args.size() < 1)
 		return;
@@ -123,14 +130,14 @@ void keyboard(unsigned char key, int x, int y){
 }
 
 void mouseClick(int button, int state, int x, int y){
-	if(saveMe == true)
+	if(saveMe || loadMe)
 		return;
-	if((GLUT_DOWN == state) && (button == GLUT_LEFT_BUTTON)){
+	if((GLUT_DOWN == state) && (button == GLUT_LEFT_BUTTON) && ((690 - y > 0) && (x < 1200))){
 		keyDownStat = true;
 		glutPostRedisplay();
 		return ;
 	}
-	if(GLUT_UP == state)
+	if(GLUT_UP == state && GLUT_LEFT_BUTTON == button)
 		keyDownStat = false;
 	if((690 - y < 0) || (y < 1) || (x < 1) || (y > 690) || (x > 1365)){
 		errorBuffer = "ERROR : Click out of bound";
@@ -172,7 +179,11 @@ void activePointer(int x, int y){
 
 void updateCurrentMode(){
 	if(saveMe){
-		mode = " Move: Saviour <Enter File Name> ";
+		mode = " Move: SAVE <Enter File Name> ";
+		return;
+	}
+	if(loadMe){
+		mode = " Move: LOAD <Enter File Name> ";
 		return;
 	}
 	mode = "Mode: " + modes[cMode->getMode()] + "  < " + cMode->modeData() + " >";

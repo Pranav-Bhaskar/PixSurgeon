@@ -163,6 +163,17 @@ void Panel::leftClick(int x ,int y){
 				consoleMode = true;
 				console = ">>>  #";
 				return;
+			case 8 :if(cMode->getMode() != 0){
+					errorBuffer = "Shift to NONE Mode to Open file  ";
+					return;
+				}
+				for(int kill=0;kill<buffer.size();++kill)
+					delete buffer[kill];
+				buffer.clear();
+				loadMe = true;
+				consoleMode = true;
+				console = ">>>  #";
+				return;
 			}
 		}
 	}
@@ -187,5 +198,8 @@ void Panel::leftClick(int x ,int y){
 		dis_r = (pow(1285 - x, 2) + pow(313 - y, 2))/16900;
 		curCol.getColour((1 - dis_r)*darkFactor, (1 - dis_g)*darkFactor, (1 - dis_b)*darkFactor);
 		return;
+	}
+	else{
+		errorBuffer = "ERROR : Click out of bound";
 	}
 }

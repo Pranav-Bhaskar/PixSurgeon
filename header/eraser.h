@@ -76,4 +76,11 @@ void Eraser::ghostPointer(){
 		++this->vert;
 	}
 	this->draw();
+	glColor3f(0, 0, 0);
+	glBegin(GL_LINE_LOOP);
+		glVertex2f(max(pointerX-size, 0), min(pointerY+size, 690));
+		glVertex2f(min(pointerX+size, 1200), min(pointerY+size, 690));
+		glVertex2f(min(pointerX+size, 1200), max(pointerY-size, 0));
+		glVertex2f(max(pointerX-size, 0), max(pointerY-size, 0));
+	glEnd();
 }
