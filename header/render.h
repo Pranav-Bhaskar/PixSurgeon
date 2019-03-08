@@ -4,6 +4,7 @@ class Render: public Mode{
 	unsigned char* pixels;
 	public:
 	Render();
+	unsigned char* sendPixels();
 	void draw();
 };
 
@@ -16,4 +17,8 @@ Render::Render(){
 void Render::draw(){
 	glRasterPos2f(0, 0);
 	glDrawPixels(1200, 694, GL_BGR_EXT, GL_UNSIGNED_BYTE, pixels);
+}
+
+unsigned char* Render::sendPixels(){
+	return pixels;
 }

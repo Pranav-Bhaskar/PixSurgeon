@@ -47,7 +47,14 @@ void changeColour(std::vector<std::string>& args){
 }
 
 void processCommand(){
-	console.erase(0, 4);
+	console.erase(0, 5);
+	if(saveMe){
+		Saviour s(console);
+		saveMe = false;
+		console.clear();
+		consoleMode = false;
+		return;
+	}
 	std::vector<std::string> args = cutter(console, ' ');
 	if(args.size() < 1)
 		return;
@@ -68,7 +75,8 @@ void keyboard(unsigned char key, int x, int y){
 			console.pop_back();
 			processCommand();
 			glutPostRedisplay();
-			console = ">>>  #";
+			if(consoleMode)
+				console = ">>>  #";
 			return;
 		}
 		errorBuffer = "Error : '";
@@ -115,6 +123,8 @@ void keyboard(unsigned char key, int x, int y){
 }
 
 void mouseClick(int button, int state, int x, int y){
+	if(saveMe == true)
+		return;
 	if((GLUT_DOWN == state) && (button == GLUT_LEFT_BUTTON)){
 		keyDownStat = true;
 		glutPostRedisplay();
@@ -161,6 +171,10 @@ void activePointer(int x, int y){
 }
 
 void updateCurrentMode(){
+	if(saveMe){
+		mode = " Move: Saviour <Enter File Name> ";
+		return;
+	}
 	mode = "Mode: " + modes[cMode->getMode()] + "  < " + cMode->modeData() + " >";
 }
 

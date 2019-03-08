@@ -153,6 +153,16 @@ void Panel::leftClick(int x ,int y){
 				buffer.push_back(cMode);
 				cMode = new None;
 				return;
+			case 7 :if(cMode->getMode() != 0){
+					errorBuffer = "Shift to NONE Mode to Save file  ";
+					return;
+				}
+				delete cMode;
+				cMode = new Render;
+				saveMe = true;
+				consoleMode = true;
+				console = ">>>  #";
+				return;
 			}
 		}
 	}

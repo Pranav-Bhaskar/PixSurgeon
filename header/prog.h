@@ -2,13 +2,15 @@
 #include<GL/glut.h>
 #include<vector>
 #include<string>
+#include<fstream>
 #define WINDOW_WIDTH 1365.0
 #define WINDOW_HEIGHT 700.0
 
 #include "colourHandler.h"
+bool saveMe = false;
 ColourHandler curCol;
 void drawString(void*, float, float, std::string);
-std::vector<std::string> modes = {"NONE", "LINE", "POLYLINE", "POLYNOMIAL", "PENCIL", "ERASER", "RENDER"};
+std::vector<std::string> modes = {"NONE", "LINE", "POLYLINE", "POLYNOMIAL", "PENCIL", "ERASER", "RENDER", "SAVIOUR"};
 std::string console, pointer("Welcome To Pix Surgeon"), mode, errorBuffer;
 #include "./mode.h"
 Mode* cMode;
@@ -37,6 +39,7 @@ void activePointer(int, int);
 #include "./poly.h"
 #include "./polyLine.h"
 #include "./render.h"
+#include "./saviour.h"
 #include "panel.h"
 Panel panel;
 #include "./glob.h"

@@ -8,6 +8,7 @@ class Mode{
 	//virtual void right_click()=0;	//The right click should show a menu
 	public:
 	unsigned int getMode();
+	virtual unsigned char* sendPixels();
 	virtual void leftClick(int, int);
 	virtual void rightClick(int, int);
 	virtual void draw()=0;
@@ -20,6 +21,8 @@ class Mode{
 void Mode::setMode(unsigned int update){
 	this->mode = update;
 }
+
+unsigned char* Mode::sendPixels(){return NULL;}
 
 void Mode::quit(){}
 
