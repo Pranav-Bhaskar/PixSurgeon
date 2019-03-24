@@ -139,9 +139,12 @@ void Panel::leftClick(int x ,int y){
 				cMode = new Pencil;
 				return;
 			case 5 :delete cMode;
+				cMode = new Bucket;
+				return;
+			case 6 :delete cMode;
 				cMode = new Eraser;
 				return;
-			case 6 :if(cMode->getMode() != 0){
+			case 7 :if(cMode->getMode() != 0){
 					errorBuffer = "Shift to NONE Mode then RENDER  ";
 					return;
 				}
@@ -152,8 +155,9 @@ void Panel::leftClick(int x ,int y){
 				buffer.clear();
 				buffer.push_back(cMode);
 				cMode = new None;
+				errorBuffer = "Rendering SUCESS  ";
 				return;
-			case 7 :if(cMode->getMode() != 0){
+			case 8 :if(cMode->getMode() != 0){
 					errorBuffer = "Shift to NONE Mode to Save file  ";
 					return;
 				}
@@ -163,7 +167,7 @@ void Panel::leftClick(int x ,int y){
 				consoleMode = true;
 				console = ">>>  #";
 				return;
-			case 8 :if(cMode->getMode() != 0){
+			case 9 :if(cMode->getMode() != 0){
 					errorBuffer = "Shift to NONE Mode to Open file  ";
 					return;
 				}

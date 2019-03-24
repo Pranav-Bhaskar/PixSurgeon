@@ -27,6 +27,7 @@ Loader::Loader(std::string l){
 		file.close();
 		Mode* temp = new Render(pix);
 		buffer.push_back(temp);
+		errorBuffer = "File Loaded  ";
 	}catch(...){
 		errorBuffer = "ERROR : Could'nt Read From File.";
 	}

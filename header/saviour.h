@@ -19,6 +19,7 @@ Saviour::Saviour(std::string s){
 	this->saveFile();
 	delete cMode;
 	cMode = new None;
+	errorBuffer = "File Saved  ";
 }
 
 void Saviour::getPixels(){

@@ -29,7 +29,7 @@ int Eraser::min(int a, int b){
 }
 
 Eraser::Eraser(){
-	setMode(5);
+	setMode(6);
 	this->vert = 0;
 	this->size = 50;
 	objectColour.getColour(1, 1, 1, 0);
