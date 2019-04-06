@@ -11,7 +11,7 @@ bool saveMe = false;
 bool loadMe = false;
 ColourHandler curCol;
 void drawString(void*, float, float, std::string);
-std::vector<std::string> modes = {"NONE", "LINE", "POLYLINE", "POLYNOMIAL", "PENCIL", "BUCKET", "ERASER", "RENDER", "SAVE", "LOAD"};
+std::vector<std::string> modes = {"NONE", "LINE", "POLYLINE", "POLYGON", "PENCIL", "BUCKET", "ERASER", "RENDER", "SAVE", "LOAD"};
 std::string console, pointer("Welcome To Pix Surgeon"), mode, errorBuffer;
 #include "./mode.h"
 Mode* cMode;
