@@ -16,6 +16,37 @@ std::vector<std::string> cutter(std::string& str, char delimer){
 	return cut;
 }
 
+void pointSize(int opt){
+	skipClick = true;
+	switch(opt){
+	case 1:
+		curCol.getSize(1);
+		break;
+	case 2:
+		curCol.getSize(4);
+		break;
+	case 3:
+		curCol.getSize(8);
+		break;
+	case 4:
+		curCol.getSize(12);
+		break;
+	case 5:
+		curCol.getSize(16);
+		break;
+	}
+}
+
+void eraserSizeMenuFunc(int opt){
+	skipClick = true;
+	cMode->menuOption(opt);
+}
+
+void mainMenu(int opt){
+	skipClick = true;
+	cMode->menuOption(opt);
+}
+
 void display(){
 	glClear(GL_COLOR_BUFFER_BIT);
 	for(int i=0;i<buffer.size();++i)
@@ -130,6 +161,13 @@ void keyboard(unsigned char key, int x, int y){
 }
 
 void mouseClick(int button, int state, int x, int y){
+	pointerX = x;
+	pointerY = 690 - y;
+	if(skipClick){
+		skipClick = false;
+		glutPostRedisplay();
+		return;
+	}
 	if(saveMe || loadMe)
 		return;
 	if((GLUT_DOWN == state) && (button == GLUT_LEFT_BUTTON) && ((690 - y > 0) && (x < 1200))){
@@ -143,10 +181,6 @@ void mouseClick(int button, int state, int x, int y){
 		errorBuffer = "ERROR : Click out of bound";
 		glutPostRedisplay();
 		return ;
-	}
-	if(button == GLUT_RIGHT_BUTTON){
-		if(x <= 1200)
-			cMode->rightClick(x, 690 - y);
 	}
 	if(button == GLUT_LEFT_BUTTON){
 		if(x > 1200)

@@ -7,6 +7,7 @@ class ColourHandler{
 	double alpha;
 	public:
 	void setEnv();
+	void getSize(int);
 	void swap(ColourHandler&);
 	void getColour(double, double, double, double);
 	ColourHandler();
@@ -45,6 +46,11 @@ void ColourHandler::swap(ColourHandler& col){
 void ColourHandler::setEnv(){
 	glColor4d(this->red, this->green, this->blue, this->alpha);
 	glPointSize(this->size);
+	glLineWidth(this->size);
+}
+
+void ColourHandler::getSize(int a){
+	this->size = a;
 }
 
 void ColourHandler::getColour(double a, double b, double c, double d = 0.0000){
@@ -55,7 +61,8 @@ void ColourHandler::getColour(double a, double b, double c, double d = 0.0000){
 }
 
 ColourHandler::ColourHandler(){
-	this->size = this->red = this->green = this->blue = this->alpha = 0.0;
+	this->red = this->green = this->blue = this->alpha = 0.0;
+	this->size = 1.0;
 }
 
 ColourHandler::ColourHandler(ColourHandler& col){

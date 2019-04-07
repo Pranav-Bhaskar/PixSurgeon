@@ -16,6 +16,7 @@ class Line: public Mode{
 Line::Line(){
 	setMode(1);
 	this->state = 0;
+	this->makeMenu();
 }
 
 void Line::undeadPoints(){

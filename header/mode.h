@@ -2,21 +2,28 @@
 //To be inherited publically.
 class Mode{
 	protected:
+	void makeSizeMenu();
+	int sizeMenu;
 	void setMode(unsigned int);
 	unsigned int mode;
 	ColourHandler objectColour;
-	//virtual void right_click()=0;	//The right click should show a menu
+	virtual void makeMenu();
+	int rightMainMenu;
 	public:
+	Mode();
 	unsigned int getMode();
+	virtual void menuOption(int);
 	virtual unsigned char* sendPixels();
 	virtual void leftClick(int, int);
-	virtual void rightClick(int, int);
 	virtual void draw()=0;
 	virtual std::string modeData();
 	virtual void quit();
 	virtual void ghostPointer();	//The dotted line which follows your
 	virtual void undeadPoints();	//The Points which were clicked at some time in the history
 };
+
+Mode::Mode(){
+}
 
 void Mode::setMode(unsigned int update){
 	this->mode = update;
@@ -34,7 +41,22 @@ void Mode::ghostPointer(){}
 
 void Mode::undeadPoints(){}
 
-void Mode::rightClick(int, int){}
+void Mode::menuOption(int){}
+
+void Mode::makeSizeMenu(){
+	this->sizeMenu = glutCreateMenu(pointSize);
+	glutAddMenuEntry("1px", 1);
+	glutAddMenuEntry("4px", 2);
+	glutAddMenuEntry("8px", 3);
+}
+
+void Mode::makeMenu(){
+	this->makeSizeMenu();
+	glutDetachMenu(GLUT_RIGHT_BUTTON);
+	this->rightMainMenu = glutCreateMenu(mainMenu);
+	glutAddSubMenu("Size", this->sizeMenu);
+	glutAttachMenu(GLUT_RIGHT_BUTTON);
+}
 
 unsigned int Mode::getMode(){
 	return this->mode;

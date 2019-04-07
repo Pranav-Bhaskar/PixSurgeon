@@ -9,6 +9,7 @@ class None: public Mode{
 
 None::None(){
 	setMode(0);
+	this->makeMenu();
 }
 
 std::string None::modeData(){

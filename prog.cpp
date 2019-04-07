@@ -1,8 +1,8 @@
 #include "./header/prog.h"
 
 int main(int argc, char* argv[]){
-	cMode = new None;
 	glutInit(&argc, argv);
+	cMode = new None;
 	glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 	glutInitWindowPosition(0, 0);
 	glutCreateWindow("Pix Surgeon");

@@ -12,6 +12,7 @@ class Bucket:public Mode{
 };
 
 Bucket::Bucket(){
+	this->makeMenu();
 	setMode(5);
 }
 
@@ -78,6 +79,7 @@ void Bucket::draw(){
 void Bucket::leftClick(int x, int y){
 	this->store(x, y);
 	this->objectColour = curCol;
+	this->objectColour.getSize(1);
 	buffer.push_back(this);
 	cMode = new Bucket;
 	glutPostRedisplay();

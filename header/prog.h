@@ -9,10 +9,14 @@
 #include "colourHandler.h"
 bool saveMe = false;
 bool loadMe = false;
+bool skipClick = false;
 ColourHandler curCol;
 void drawString(void*, float, float, std::string);
 std::vector<std::string> modes = {"NONE", "LINE", "POLYLINE", "POLYGON", "PENCIL", "BUCKET", "ERASER", "RENDER", "SAVE", "LOAD"};
 std::string console, pointer("Welcome To Pix Surgeon"), mode, errorBuffer;
+void pointSize(int);
+void eraserSizeMenuFunc(int);
+void mainMenu(int);
 #include "./mode.h"
 Mode* cMode;
 std::vector<Mode*> buffer;

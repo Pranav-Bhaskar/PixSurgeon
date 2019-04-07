@@ -15,6 +15,7 @@ class Pencil: public Mode{
 
 Pencil::Pencil(){
 	setMode(4);
+	this->makeMenu();
 	this->vert = 0;
 }
 

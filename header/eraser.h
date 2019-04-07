@@ -6,8 +6,13 @@ class Eraser: public Mode{
 	unsigned int size;
 	int max(int, int);
 	int min(int, int);
+	void makeEraserSizeMenu();
+	int eraserSizeMenu;
+	protected:
+	void makeMenu();
 	public:
 	void leftClick(int, int);
+	void menuOption(int);
 	void draw();
 	Eraser();
 	~Eraser();
@@ -30,9 +35,12 @@ int Eraser::min(int a, int b){
 
 Eraser::Eraser(){
 	setMode(6);
+	this->makeEraserSizeMenu();
+	this->makeMenu();
 	this->vert = 0;
 	this->size = 50;
 	objectColour.getColour(1, 1, 1, 0);
+	objectColour.getSize(1);
 }
 
 std::string Eraser::modeData(){
@@ -54,6 +62,7 @@ void Eraser::draw(){
 void Eraser::leftClick(int, int){
 	buffer.push_back(this);
 	cMode = new Eraser;
+	cMode->menuOption(this->size/25);
 }
 
 void Eraser::quit(){
@@ -83,4 +92,23 @@ void Eraser::ghostPointer(){
 		glVertex2f(min(pointerX+size, 1200), max(pointerY-size, 0));
 		glVertex2f(max(pointerX-size, 0), max(pointerY-size, 0));
 	glEnd();
+}
+
+void Eraser::menuOption(int opt){
+	this->size = 25*opt;
+}
+
+void Eraser::makeMenu(){
+	glutDetachMenu(GLUT_RIGHT_BUTTON);
+	this->rightMainMenu = glutCreateMenu(mainMenu);
+	glutAddSubMenu("Size", this->eraserSizeMenu);
+	glutAttachMenu(GLUT_RIGHT_BUTTON);
+}	
+
+void Eraser::makeEraserSizeMenu(){
+	this->eraserSizeMenu = glutCreateMenu(eraserSizeMenuFunc);
+	glutAddMenuEntry("Small", 1);
+	glutAddMenuEntry("Medium", 2);
+	glutAddMenuEntry("Large", 3);
+	glutAttachMenu(GLUT_RIGHT_BUTTON);
 }

@@ -3,9 +3,11 @@ class PolyNom: public Mode{
 	unsigned int vert;
 	std::vector<int> cord_x;
 	std::vector<int> cord_y;
+	protected:
+	void makeMenu();
 	public:
 	void leftClick(int, int);
-	void rightClick(int, int);
+	void menuOption(int);
 	void undeadPoints();
 	void ghostPointer();
 	std::string modeData();
@@ -66,14 +68,24 @@ void PolyNom::draw(){
 	glEnd();
 }
 
-void PolyNom::rightClick(int x, int y){
-	this->leftClick(x, y);
+void PolyNom::menuOption(int opt){
 	this->objectColour = curCol;
 	buffer.push_back(this);
 	cMode = new PolyNom;
 }
 
+void PolyNom::makeMenu(){
+	this->makeSizeMenu();
+	glutDetachMenu(GLUT_RIGHT_BUTTON);
+	this->rightMainMenu = glutCreateMenu(mainMenu);
+	glutAddMenuEntry("Done", 0);
+	glutAddSubMenu("Size", this->sizeMenu);
+	glutAttachMenu(GLUT_RIGHT_BUTTON);
+}	
+
 void PolyNom::leftClick(int x, int y){
+	if(this->cord_x.size() == 0)
+		this->makeMenu();
 	this->cord_x.push_back(x);
 	this->cord_y.push_back(y);
 	++this->vert;
